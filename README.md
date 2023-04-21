@@ -1,6 +1,6 @@
 # Cute Image Bot
 
-Cute Image Bot is a Discord bot that sends cute images and videos to your server.
+Cute Image Bot is a Discord bot that sends images and videos to your server. You can make it send whatever type of images/videos you want,
 Tested on windows 10 and ubuntu 20.04
 ## Features
 
