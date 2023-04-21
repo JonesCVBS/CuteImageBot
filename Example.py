@@ -2,7 +2,7 @@ from CuteImageBot import CuteImageBot
 
 # Set your bot token, allowed users and channel ID
 token = 'your_token_here'
-allowed_users = [User1Id,User2ID]    #your allows users ID
+allowed_users = [User1Id,User2ID]    #your allowed users ID
 channel_id = ''    #your channel ID
 UnsentFolderName = './your_unsent_folder_name/'
 SentFolderName = './your_sent_folder_name/'
