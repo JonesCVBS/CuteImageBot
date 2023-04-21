@@ -150,7 +150,7 @@ class CuteImageBot:
             if message.content.startswith('/help'):
                 help_text = 'Here are the available commands\n'
                 help_text += '/SendRandomPosts x -- it will send x cute images, if x is omitted I will send 1 \n'
-                help_text += '/HowManyPosts -- This command tells you how many images are in the UsedImages folder and how many are in the NewImages folder \n'
+                help_text += '/HowManyPosts -- Tells how many posts where sent and how many are left.\n'
 
                 await message.channel.send(help_text)
             elif message.content.startswith('/HowManyPosts'):
