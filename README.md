@@ -16,7 +16,7 @@ You can do /help in the bots DMs for commands
 After setting up the bot, use the following commands in Discord to interact with the bot:
 
 - `/help`: Sends a list of available commands in a private message.
-- '/SendRandomPosts x': it will send x cute images, if x is omitted I will send 1.
+- `/SendRandomPosts x`: it will send x cute images, if x is omitted I will send 1.
 - `/HowManyPosts`: Tells how many posts where sent and how many are left.
 
 To add new images to the bot, send a direct message with the image/video to the bot, doesn't work with URLs, only the files. The bot will download the image and add it to the queue. 
