@@ -44,29 +44,36 @@ class CuteImageBot:
         image_id = str(uuid.uuid4())
         # Download the image
         response = requests.get(url)
-        # Check if the file is a gif
-        if url.endswith('.gif'):
-            # Use imageio to read the gif file
-            image = imageio.imread(BytesIO(response.content))
-            # Save the gif to a file with the unique identifier as the file name
-            image_name = f'{image_id}.gif'
-            image_path = './NewImages/' + image_name
-            image.save(image_path)
-        elif url.endswith('.mp4'):
-            video_name = f'{image_id}.mp4'
-            video_path = './NewImages/' + video_name
-            with open(video_path, 'wb') as f:
-                f.write(response.content)
+        # Define accepted file types
+        accepted_filetypes = ('.gif', '.mp4', '.jpeg', '.jpg', '.png')
+
+        # Check if the file is an accepted type
+        if any(url.lower().endswith(ft) for ft in accepted_filetypes):
+            # Check if the file is a gif
+            if url.endswith('.gif'):
+                # Use imageio to read the gif file
+                image = imageio.imread(BytesIO(response.content))
+                # Save the gif to a file with the unique identifier as the file name
+                image_name = f'{image_id}.gif'
+                image_path = './NewImages/' + image_name
+                image.save(image_path)
+            elif url.endswith('.mp4'):
+                video_name = f'{image_id}.mp4'
+                video_path = './NewImages/' + video_name
+                with open(video_path, 'wb') as f:
+                    f.write(response.content)
+            else:
+                # Open the image using PIL
+                image = Image.open(BytesIO(response.content))
+                if image.mode == 'RGBA':
+                    # Convert the image to RGB mode if it's in RGBA mode
+                    image = image.convert('RGB')
+                # Save the image to a file with the unique identifier as the file name
+                image_name = f'{image_id}.jpg'
+                image_path = './NewImages/' + image_name
+                image.save(image_path)
         else:
-            # Open the image using PIL
-            image = Image.open(BytesIO(response.content))
-            if image.mode == 'RGBA':
-                # Convert the image to RGB mode if it's in RGBA mode
-                image = image.convert('RGB')
-            # Save the image to a file with the unique identifier as the file name
-            image_name = f'{image_id}.jpg'
-            image_path = './NewImages/' + image_name
-            image.save(image_path)
+            return f"I can't accept that image/video filetype, please use one of the following: {', '.join(accepted_filetypes)}"
 
     async def send_images(self, message, num_images=1):
         NewImgs = [os.path.join('./NewImages', i) for i in os.listdir('./NewImages')]
