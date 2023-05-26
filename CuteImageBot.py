@@ -22,6 +22,7 @@ class CuteImageBot:
         self.channel_id = channel_id
         self.UnsentFolderName = UnsentFolderName
         self.SentFolderName = SentFolderName
+        self.on_ready_triggered = False
 
         for folder in [self.UnsentFolderName, self.SentFolderName]:
             if not os.path.exists(folder):
