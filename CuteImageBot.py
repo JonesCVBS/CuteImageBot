@@ -50,7 +50,7 @@ class CuteImageBot:
         # Download the image
         response = requests.get(url)
         # Define accepted file types
-        accepted_filetypes = ('.gif', '.mp4', '.jpeg', '.jpg', '.png')
+        accepted_filetypes = ('.gif', '.mp4', '.jpeg', '.jpg', '.png', '.webp')
 
         # Check if the file is an accepted type
         if any(url.lower().endswith(ft) for ft in accepted_filetypes):
@@ -73,8 +73,11 @@ class CuteImageBot:
                 if image.mode == 'RGBA':
                     # Convert the image to RGB mode if it's in RGBA mode
                     image = image.convert('RGB')
-                # Save the image to a file with the unique identifier as the file name
-                image_name = f'{image_id}.jpg'
+                    # Save the image to a file with the unique identifier as the file name
+                if url.lower().endswith('.webp'):
+                    image_name = f'{image_id}.webp'  # Save webp files as webp
+                else:
+                    image_name = f'{image_id}.jpg'
                 image_path = './NewImages/' + image_name
                 image.save(image_path)
                 print("Downloaded image")
