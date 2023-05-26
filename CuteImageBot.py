@@ -29,6 +29,10 @@ class CuteImageBot:
 
         @self.client.event
         async def on_ready():
+            if self.on_ready_triggered:
+                return
+
+            self.on_ready_triggered = True
             post_time = datetime.datetime.now().replace(hour=9, minute=15, second=0, microsecond=0) + datetime.timedelta(days=1)
             await self.subbed_images(post_time, self.channel_id)
 
